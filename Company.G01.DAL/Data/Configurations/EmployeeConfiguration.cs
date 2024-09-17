@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace Company.G01.DAL.Data.Configurations
 {
-    public class DepartmentConfig : IEntityTypeConfiguration<Department>
-    {
-        public void Configure(EntityTypeBuilder<Department> builder)
+    internal class EmployeeConfiguration: IEntityTypeConfiguration<Employee>
+    { 
+        public void Configure(EntityTypeBuilder<Employee> builder)
         {
             builder
-                .Property(d => d.Id)
-                .UseIdentityColumn(10, 10);
-
+            .Property(e => e.Salary)
+            .HasColumnType("decimal(18,2)");
         }
     }
 }

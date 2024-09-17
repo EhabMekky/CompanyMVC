@@ -28,7 +28,7 @@ namespace Company.G01.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(DepartmentRepo model)
+        public IActionResult Create(Department model)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace Company.G01.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([FromRoute] int? id,DepartmentRepo model)
+        public IActionResult Edit([FromRoute] int? id,Department model)
         {
             if(id != model.Id) return BadRequest(); //400
 
@@ -97,7 +97,7 @@ namespace Company.G01.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete([FromRoute] int? id, DepartmentRepo model)
+        public IActionResult Delete([FromRoute] int? id, Department model)
         {
             if(id != model.Id) return BadRequest(); //400
 
