@@ -23,6 +23,7 @@ namespace Company.G01.PL
             });
 
             builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             
             var app = builder.Build();
 

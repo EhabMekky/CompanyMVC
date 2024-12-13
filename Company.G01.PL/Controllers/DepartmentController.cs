@@ -27,7 +27,8 @@ namespace Company.G01.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(DepartmentRepo model)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Department model)
         {
             if (ModelState.IsValid)
             {
@@ -47,8 +48,65 @@ namespace Company.G01.PL.Controllers
 
             var department = _departmentRepo.Get(id.Value);
 
+            if(department is null) return NotFound(); //404
+
+            return View(department);
+        } 
+        
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if(id is null) return BadRequest(); //400
+
+            var department = _departmentRepo.Get(id.Value);
+
+            if (department is null) return NotFound(); //404
+
             return View(department);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit([FromRoute] int? id,Department model)
+        {
+            if(id != model.Id) return BadRequest(); //400
+
+            if (ModelState.IsValid)
+            {
+                var count = _departmentRepo.Update(model);
+                if (count > 0)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            
+          return View(model);
+        }
         
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if(id is null) return BadRequest(); //400
+
+            var department = _departmentRepo.Get(id.Value);
+
+            if(department is null) return NotFound(); //404
+
+            return View(department);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete([FromRoute] int? id, Department model)
+        {
+            if(id != model.Id) return BadRequest(); //400
+
+            var count = _departmentRepo.Delete(model);
+            if (count > 0)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
     }
 }

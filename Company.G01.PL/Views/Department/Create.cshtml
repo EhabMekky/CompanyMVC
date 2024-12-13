@@ -1,4 +1,4 @@
-﻿@model DepartmentRepo
+﻿@model Department
 @{
     ViewData["Title"] = "Create";
 }
@@ -30,4 +30,8 @@
     <a asp-action="Index" class="btn btn-light">Back to List</a>
     
 </form>
-
+@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

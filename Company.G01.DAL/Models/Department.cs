@@ -8,12 +8,10 @@ using System.Threading.Tasks;
 
 namespace Company.G01.DAL.Models
 {
-    public class DepartmentRepo
+    public class Department : BaseEntity
     {
-        public int Id { get; set; }
-
         [Required(ErrorMessage = "Code is required")]
-        public int Code { get; set; }
+        public int? Code { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }

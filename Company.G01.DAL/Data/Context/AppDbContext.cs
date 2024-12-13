@@ -24,6 +24,7 @@ namespace Company.G01.DAL.Data.Context
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<DepartmentRepo> Departments { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
     }
 }
